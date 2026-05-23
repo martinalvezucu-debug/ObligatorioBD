@@ -49,7 +49,7 @@ CREATE TABLE inscripciones (
     id_estudiante VARCHAR(15) NOT NULL,
     id_actividad INT NOT NULL,
     fecha_inscripcion DATE NOT NULL,
-    estado VARCHAR(25) NOT NULL, # ejm: 'espera', 'confirmada'
+    estado VARCHAR(25) NOT NULL, # ejm: 'espera', 'confirmada', 'cancelada'
 
     UNIQUE (id_estudiante, id_actividad),
 
