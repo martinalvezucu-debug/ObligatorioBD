@@ -74,3 +74,30 @@ HAVING COUNT(*) >= 3;
 
 #Tres consultas adicionales propuestas por el equipo.
 
+#Listado de estudiantes confirmados con actividad
+
+SELECT e.nombre, e.apellido,a.nombre AS actividad
+FROM inscripciones i
+JOIN estudiantes e
+    ON i.id_estudiante = e.id
+JOIN actividades a
+    ON i.id_actividad = a.id
+WHERE i.estado = 'confirmada';
+
+#Actividades sin inscriptos
+
+SELECT a.nombre
+FROM actividades a
+LEFT JOIN inscripciones i
+    ON a.id = i.id_actividad
+WHERE i.id IS NULL;
+
+#Estudiantes con mayor asistencia
+
+SELECT e.id, e.nombre,e.apellido,ROUND(SUM(CASE WHEN a.asistencia = TRUE THEN 1 ELSE 0 END)* 100.0 /COUNT(a.id),2) AS porcentaje_asistencia
+FROM estudiantes e
+JOIN inscripciones i ON e.id = i.id_estudiante
+JOIN asistencias a ON i.id = a.id_inscripcion
+GROUP BY e.id,e.nombre,e.apellido
+ORDER BY porcentaje_asistencia DESC
+LIMIT 5;
