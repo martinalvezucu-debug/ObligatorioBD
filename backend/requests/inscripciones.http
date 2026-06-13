@@ -1,0 +1,10 @@
+@baseUrl = http://localhost:8000
+
+### Crear inscripcion
+POST {{baseUrl}}/inscripciones
+Content-Type: application/json
+
+{
+  "id_estudiante": "55555555",
+  "id_actividad": 10
+}

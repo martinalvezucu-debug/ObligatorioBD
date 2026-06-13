@@ -1,0 +1,36 @@
+@baseUrl = http://localhost:8000
+
+### Listar estudiantes
+GET {{baseUrl}}/estudiantes
+
+### Obtener estudiante por documento
+GET {{baseUrl}}/estudiantes/55555555
+
+### Crear estudiante
+POST {{baseUrl}}/estudiantes
+Content-Type: application/json
+
+{
+  "id": "55555555",
+  "nombre": "Christian",
+  "apellido": "Dziczek",
+  "email": "christian@example.com",
+  "carrera": "Licenciatura en Negocios Internacionales",
+  "facultad": "Facultad de Ciencias Empresariales"
+}
+
+### Actualizar estudiante
+PUT {{baseUrl}}/estudiantes/55555555
+Content-Type: application/json
+
+{
+  "id": "55555555",
+  "nombre": "Christian",
+  "apellido": "Dziczek",
+  "email": "christian@example.com",
+  "carrera": "Licenciatura en Negocios Internacionales",
+  "facultad": "Ciencias Empresariales"
+}
+
+### Eliminar estudiante
+DELETE {{baseUrl}}/estudiantes/55555555

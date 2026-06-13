@@ -1,0 +1,26 @@
+@baseUrl = http://localhost:8000
+
+### Listar espacios
+GET {{baseUrl}}/espacios
+
+### Obtener espacio por ID
+GET {{baseUrl}}/espacios/7
+
+### Crear espacio
+POST {{baseUrl}}/espacios
+Content-Type: application/json
+
+{
+  "nombre": "Cancha 3"
+}
+
+### Actualizar espacio
+PUT {{baseUrl}}/espacios/7
+Content-Type: application/json
+
+{
+  "nombre": "Cancha 8"
+}
+
+### Eliminar espacio
+DELETE {{baseUrl}}/espacios/7

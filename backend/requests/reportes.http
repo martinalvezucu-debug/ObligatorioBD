@@ -1,0 +1,34 @@
+@baseUrl = http://localhost:8000
+
+### Test endpoint
+GET {{baseUrl}}/
+
+### Actividades con mayor cantidad de inscriptos confirmados
+GET {{baseUrl}}/reportes/actividades-mas-inscriptos
+
+### Actividades con cupos disponibles
+GET {{baseUrl}}/reportes/actividades-con-cupos
+
+### Cantidad de inscriptos por disciplina
+GET {{baseUrl}}/reportes/inscriptos-por-disciplina
+
+### Cantidad de inscriptos por facultad
+GET {{baseUrl}}/reportes/inscriptos-por-facultad
+
+### Porcentaje de ocupacion por actividad
+GET {{baseUrl}}/reportes/ocupacion-actividades
+
+### Porcentaje de asistencia por actividad
+GET {{baseUrl}}/reportes/asistencia-por-actividad
+
+### Estudiantes con tres o mas inasistencias
+GET {{baseUrl}}/reportes/estudiantes-con-inasistencias
+
+### Estudiantes confirmados por actividad
+GET {{baseUrl}}/reportes/estudiantes-confirmados-por-actividad
+
+### Actividades sin inscriptos
+GET {{baseUrl}}/reportes/actividades-sin-inscriptos
+
+### Estudiantes con mayor asistencia
+GET {{baseUrl}}/reportes/estudiantes-con-mayor-asistencia

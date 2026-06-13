@@ -1,0 +1,26 @@
+@baseUrl = http://localhost:8000
+
+### Listar disciplinas
+GET {{baseUrl}}/disciplinas
+
+### Obtener disciplina por ID
+GET {{baseUrl}}/disciplinas/8
+
+### Crear disciplina
+POST {{baseUrl}}/disciplinas
+Content-Type: application/json
+
+{
+  "nombre": "Natacion"
+}
+
+### Actualizar disciplina
+PUT {{baseUrl}}/disciplinas/8
+Content-Type: application/json
+
+{
+  "nombre": "Natacion Artistica"
+}
+
+### Eliminar disciplina
+DELETE {{baseUrl}}/disciplinas/8

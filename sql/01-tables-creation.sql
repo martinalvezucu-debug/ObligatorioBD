@@ -10,17 +10,28 @@ CREATE TABLE estudiantes (
     apellido VARCHAR(50) NOT NULL,
     email VARCHAR(75) NOT NULL UNIQUE,
     carrera VARCHAR(100) NOT NULL,
-    facultad VARCHAR(50) NOT NULL
+    facultad VARCHAR(50) NOT NULL,
+
+    CHECK (TRIM(id) <> ''),
+    CHECK (TRIM(nombre) <> ''),
+    CHECK (TRIM(apellido) <> ''),
+    CHECK (TRIM(email) <> ''),
+    CHECK (TRIM(carrera) <> ''),
+    CHECK (TRIM(facultad) <> '')
 );
 
 CREATE TABLE disciplinas (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(50) NOT NULL UNIQUE
+    nombre VARCHAR(50) NOT NULL UNIQUE,
+
+    CHECK (TRIM(nombre) <> '')
 );
 
 CREATE TABLE espacios (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(20) NOT NULL UNIQUE
+    nombre VARCHAR(20) NOT NULL UNIQUE,
+
+    CHECK (TRIM(nombre) <> '')
 );
 
 CREATE TABLE actividades (
@@ -31,7 +42,12 @@ CREATE TABLE actividades (
     cupo_maximo INT NOT NULL,
     dia VARCHAR(50) NOT NULL,
     horario TIME NOT NULL,
-    estado VARCHAR(15) NOT NULL, # ejm: 'abierta', 'cerrada', 'finalizada' o 'cancelada'.
+    estado VARCHAR(15) NOT NULL,
+
+    CHECK (TRIM(nombre) <> ''),
+    CHECK (TRIM(dia) <> ''),
+    CHECK (cupo_maximo > 0),
+    CHECK (estado IN ('abierta', 'cerrada', 'finalizada', 'cancelada')),
 
     CONSTRAINT fk_disciplina_actividad
     FOREIGN KEY (id_disciplina)
@@ -49,8 +65,9 @@ CREATE TABLE inscripciones (
     id_estudiante VARCHAR(15) NOT NULL,
     id_actividad INT NOT NULL,
     fecha_inscripcion DATE NOT NULL,
-    estado VARCHAR(25) NOT NULL, # ejm: 'espera', 'confirmada', 'cancelada'
+    estado VARCHAR(25) NOT NULL,
 
+    CHECK (estado IN ('confirmada', 'espera', 'cancelada')),
     UNIQUE (id_estudiante, id_actividad),
 
     CONSTRAINT fk_estudiante_inscripcion

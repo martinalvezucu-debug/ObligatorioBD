@@ -1,0 +1,38 @@
+@baseUrl = http://localhost:8000
+
+### Listar actividades
+GET {{baseUrl}}/actividades
+
+### Obtener actividad por ID
+GET {{baseUrl}}/actividades/9
+
+### Crear actividad
+POST {{baseUrl}}/actividades
+Content-Type: application/json
+
+{
+  "nombre": "Funcional avanzado",
+  "id_disciplina": 6,
+  "id_espacio": 5,
+  "cupo_maximo": 15,
+  "dia": "Martes",
+  "horario": "18:30:00",
+  "estado": "abierta"
+}
+
+### Actualizar actividad
+PUT {{baseUrl}}/actividades/9
+Content-Type: application/json
+
+{
+  "nombre": "Funcional avanzado noche",
+  "id_disciplina": 6,
+  "id_espacio": 5,
+  "cupo_maximo": 15,
+  "dia": "Martes",
+  "horario": "18:30:00",
+  "estado": "abierta"
+}
+
+### Eliminar actividad
+DELETE {{baseUrl}}/actividades/9
