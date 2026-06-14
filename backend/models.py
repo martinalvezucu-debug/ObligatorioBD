@@ -1,3 +1,4 @@
+from datetime import date
 from typing import Literal
 from pydantic import BaseModel, Field
 
@@ -35,5 +36,5 @@ class Inscripcion(BaseModel):
 
 class Asistencia(BaseModel):
     id_inscripcion: int = Field(gt=0)
+    fecha: date
     asistencia: bool
-

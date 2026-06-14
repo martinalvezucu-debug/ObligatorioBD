@@ -1,5 +1,8 @@
 @baseUrl = http://localhost:8000
 
+### Listar inscripciones
+GET {{baseUrl}}/inscripciones
+
 ### Crear inscripcion
 POST {{baseUrl}}/inscripciones
 Content-Type: application/json
@@ -8,3 +11,6 @@ Content-Type: application/json
   "id_estudiante": "55555555",
   "id_actividad": 10
 }
+
+### Cancelar inscripcion
+PUT {{baseUrl}}/inscripciones/1/cancelar

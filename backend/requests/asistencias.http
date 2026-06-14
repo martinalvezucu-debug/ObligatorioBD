@@ -6,5 +6,6 @@ Content-Type: application/json
 
 {
   "id_inscripcion": 21,
+  "fecha": "2026-06-14",
   "asistencia": true
 }

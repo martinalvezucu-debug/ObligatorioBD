@@ -29,8 +29,8 @@ def registrar_asistencia(asistencia: Asistencia):
         raise HTTPException(status_code=400, detail="La inscripcion no esta confirmada")
 
     cursor.execute(
-        "SELECT * FROM asistencias WHERE id_inscripcion = %s and fecha = CURDATE();",
-        (asistencia.id_inscripcion,)
+        "SELECT * FROM asistencias WHERE id_inscripcion = %s and fecha = %s",
+        (asistencia.id_inscripcion, asistencia.fecha)
     )
     posible_asistencia = cursor.fetchone()
 
@@ -43,10 +43,11 @@ def registrar_asistencia(asistencia: Asistencia):
     cursor.execute(
         """
         INSERT INTO asistencias (id_inscripcion, fecha, asistencia)
-        VALUES (%s, CURDATE(), %s)
+        VALUES (%s, %s, %s)
         """,
         (
             asistencia.id_inscripcion,
+            asistencia.fecha,
             asistencia.asistencia
         )
     )
@@ -56,6 +57,5 @@ def registrar_asistencia(asistencia: Asistencia):
     cnx.close()
 
     return {"mensaje": "Asistencia registrada"}
-
 
 

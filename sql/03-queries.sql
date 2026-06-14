@@ -23,7 +23,7 @@ SELECT a.nombre,
 FROM actividades a
 LEFT JOIN inscripciones i ON a.id = i.id_actividad AND i.estado = 'confirmada'
 GROUP BY a.id, a.nombre, a.cupo_maximo
-HAVING a.cupo_maximo > 0;
+HAVING cupos_disponibles > 0;
 
 # Cantidad de inscriptos por disciplina deportiva
 SELECT d.nombre, count(i.id) as cantidad_inscriptos
