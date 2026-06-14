@@ -61,6 +61,8 @@ dist/
 *.dump
 
 node_modules/
+.vite/
+frontend/.vite/
 .next/
 dist/
 build/

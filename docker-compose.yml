@@ -1,7 +1,10 @@
 services:
   db:
-    image: mysql:8.4
+    build:
+      context: .
+      dockerfile: db/Dockerfile
     container_name: obligatorio-db
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: obligatorio
@@ -9,8 +12,6 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
-      - ./sql/01-tables-creation.sql:/docker-entrypoint-initdb.d/01-tables-creation.sql:ro
-      - ./sql/02-inserts.sql:/docker-entrypoint-initdb.d/02-inserts.sql:ro
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
       interval: 5s
@@ -18,23 +19,35 @@ services:
       retries: 20
 
   api:
-    image: python:3.12-slim
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
     container_name: obligatorio-api
-    working_dir: /app
+    restart: unless-stopped
     environment:
       DB_HOST: db
-      DB_PORT: 3306
+      DB_PORT: "3306"
       DB_USER: root
       DB_PASSWORD: root
       DB_NAME: obligatorio
     ports:
       - "8000:8000"
-    volumes:
-      - .:/app
-    command: sh -c "pip install --no-cache-dir -r requirements.txt && uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload"
     depends_on:
       db:
         condition: service_healthy
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: obligatorio-frontend
+    restart: unless-stopped
+    environment:
+      API_PROXY_TARGET: http://api:8000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
 
 volumes:
   db_data:
